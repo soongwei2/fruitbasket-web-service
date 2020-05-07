@@ -1,5 +1,7 @@
 const winston = require('winston'),
     expressWinston = require('express-winston');
+const DailyRotateFile = require('winston-daily-rotate-file');
+const packageInfo = require('../package.json');
 
 class logUtils {
     static setup() {
@@ -13,18 +15,31 @@ class logUtils {
         this.setup();
 
         app.use(expressWinston.logger({
+            statusLevels: {
+                "success": "info",
+                "warn": "warn",
+                "error": "error"
+            },
             transports: [
-                new winston.transports.Console()
+                new winston.transports.Console(),
+                new DailyRotateFile({
+                    zippedArchive: false,
+                    dirname: './logs',
+                    filename: packageInfo.name + "(" + packageInfo.version + ")" + '_' + "%DATE%" + ".log",
+                    datePattern: 'YYYY-MM-DD',
+                    maxFiles: '30d'
+                }),
             ],
             format: winston.format.combine(
+                winston.format.timestamp(),
                 winston.format.json()
             ),
-            ignoreRoute: function (req, res) {
-                if (req.url == '/favicon.ico' || req.url.includes('/api-docs/')) {
+            /* ignoreRoute: function (req, res) {
+                if (req.url.includes('/api-docs/')) {
                     return true;
                 }
                 return false;
-            },
+            }, */
 
         }));
 
