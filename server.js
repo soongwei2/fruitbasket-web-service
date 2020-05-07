@@ -10,15 +10,7 @@ middlewares.configureMiddlewares();
 
 Promise.resolve().then(() => {
   //add database account to env var
-  process.env.databaseAccount = JSON.stringify({
-    username: "root",
-    password: "P@ssw0rd@#1",
-    options: {
-      host: "localhost",
-      port: 3306,
-      dialect: "mysql",
-    }
-  });
+  process.env.databaseAccount = JSON.stringify(config.database);
 }).then(() => {
   return require('@soongwei/mysql-db/databases/fruitBasketMaster');
 }).then((database) => {
