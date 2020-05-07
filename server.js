@@ -15,7 +15,7 @@ Promise.resolve().then(() => {
   return require('@soongwei/mysql-db/databases/fruitBasketMaster');
 }).then((database) => {
   return authSyncDatabase(database, {
-    logging: true
+    logging: false
   });
 }).then(() => {
   const services = require('./services');
