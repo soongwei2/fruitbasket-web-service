@@ -19,6 +19,12 @@ class Functions {
             }
         })
     }
+
+    static addPromotion(payload) {
+        return fruitBasketMaster.promotion.create(payload, {
+            include: [fruitBasketMaster.promotionRules]
+        })
+    }
 }
 
 module.exports = Functions;
