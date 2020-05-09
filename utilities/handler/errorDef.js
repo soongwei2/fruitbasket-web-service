@@ -28,8 +28,8 @@ function compileError(err) {
         delete _err.status;
 
         return {
+            ..._err,
             status: err.status,
-            message: _err
         };
     }
   
