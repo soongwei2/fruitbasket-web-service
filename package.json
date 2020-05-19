@@ -1,6 +1,6 @@
 {
   "name": "web-service",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A web service for Fruit Basket.",
   "private": true,
   "main": "server.js",
@@ -8,7 +8,7 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "@soongwei/commons": "^1.0.0",
+    "@soongwei/commons": "^1.0.1",
     "@soongwei/mysql-db": "^1.0.0",
     "app-root-path": "^2.2.1",
     "base64url": "^3.0.1",

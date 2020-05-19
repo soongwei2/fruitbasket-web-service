@@ -33,5 +33,17 @@ router.put('/full', function (req, res, next) {
     });
 }); 
 
+router.put('/payment', function (req, res, next) {
+    const payload = req.body;
+
+    errorDef.parameterHandler([payload, payload.basketArr, payload.invoice, payload.userId]);
+
+    return functions.putInvoice(payload).then((results) => {
+        return res.status(200).send(results);
+    }).catch((reason) => {
+        next(reason);
+    });
+}); 
+
 
 module.exports = router;

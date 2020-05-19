@@ -59,4 +59,9 @@ module.exports = {
         code: "INVALID_COUPON",
         message: "Invalid coupon code"
     },
+    INVALID_INVOICE: {
+        status: 400,
+        code: "INVALID_INVOICE",
+        message: "Invalid invoice calculation"
+    },
 }

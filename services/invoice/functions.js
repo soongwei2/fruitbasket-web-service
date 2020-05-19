@@ -3,6 +3,7 @@ const fruitBasketMaster = require('@soongwei/mysql-db/databases/fruitBasketMaste
 const Sequelize = fruitBasketMaster.sequelize;
 const promotionFunction = require('../promotion/functions');
 const errorDef = require('../../utilities/handler')
+const commonInvoice = require('@soongwei/commons/basket/invoice');
 
 class Functions {
 
@@ -50,6 +51,16 @@ class Functions {
         })
 
 
+    }
+
+    static putPayment(payload){
+        const invoice = commonInvoice.generateInvoice(payload.basketArr, payload.userId);
+
+        if(!_.isEqual(invoice, payload.invoice)){
+            throw errorDef.INVALID_INVOICE;
+        }
+
+        return module.exports.putInvoice(invoice);
     }
 }
 
